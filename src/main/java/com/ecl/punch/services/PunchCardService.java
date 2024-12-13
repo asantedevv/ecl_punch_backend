@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +42,8 @@ public class PunchCardService {
             punchCard.setPunchOutNotes("");
             punchCard.setPunchInNotes("");
             punchCard.setNotes("");
+            punchCard.setPunchDate(new Date());
+            punchCard.setTotalHours(0);
             punchCard.setPunchOutDateTime(new Date());
 
             PunchCard punchCard1 = punchCardRepository.save(punchCard);
@@ -69,6 +73,19 @@ public class PunchCardService {
             punchCard1.setStatus("COMPLETED");
             punchCard1.setPunchOutDateTime(new Date());
             punchCard1.setPunchOutNotes(punchCard.getPunchOutNotes());
+
+//            Duration duration = Duration.between(punchCard1.getPunchInDateTime(), punchCard1.getPunchOutDateTime());
+
+
+            Instant punchInInstant = punchCard1.getPunchInDateTime().toInstant();
+            Instant punchOutInstant = punchCard1.getPunchOutDateTime().toInstant();
+
+            Duration duration = Duration.between(punchInInstant, punchOutInstant);
+
+            int hoursWorked = (int) duration.toHours();
+
+
+            punchCard1.setTotalHours(hoursWorked);
             punchCardRepository.save(punchCard1);
 
 

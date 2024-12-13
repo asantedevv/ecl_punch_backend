@@ -26,6 +26,8 @@ public class PunchCard {
     private Integer userId;
     private Date punchInDateTime;
     private Date punchOutDateTime;
+    private Date punchDate;
+    private int hoursWorked;
 
 
     private String locationName;
@@ -34,5 +36,6 @@ public class PunchCard {
     private String notes;
     private String punchInNotes;
     private String punchOutNotes;
+    private int totalHours;
 
 }
