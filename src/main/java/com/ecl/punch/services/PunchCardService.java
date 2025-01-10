@@ -53,6 +53,7 @@ public class PunchCardService {
 
             User user = userRepository.findById(punchCard.getUserId()).orElseThrow(() -> new RuntimeException("User Not Found"));
             user.setPunch("Punched In");
+            user.setPunchInStatus(true);
 
             System.out.println("this is the user punched In" + user.getPunch());
             userRepository.save(user);
@@ -96,6 +97,7 @@ public class PunchCardService {
             System.out.println(user.getFullName());
             System.out.println(user.getPunch());
             user.setPunch("Punched Out");
+            user.setPunchInStatus(false);
             userRepository.save(user);
             System.out.println(user.getPunch());
 

@@ -59,8 +59,8 @@ public class AuthenticationService {
 
 
             user.setDeleteStatus("NO");
-user.setPunchInStatus("FALSE");
-user.setPunch("Punched Out");
+            user.setPunchInStatus(false);
+            user.setPunch("Punched Out");
             userRepository.save(user);
 
             var jwtToken = jwtService.generateToken(user);

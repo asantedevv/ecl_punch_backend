@@ -28,7 +28,7 @@ public class User implements UserDetails {
     private Integer id;
     private String email;
     private String password;
-    private String punchInStatus;
+    private boolean punchInStatus;
     private String deleteStatus;
     private String firstName;
     private String lastName;
